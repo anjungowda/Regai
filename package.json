@@ -1,0 +1,53 @@
+{
+  "name": "regai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@stripe/stripe-js": "^9.2.0",
+    "@tanstack/react-query": "^5.99.0",
+    "@types/dompurify": "^3.0.5",
+    "@types/file-saver": "^2.0.7",
+    "@types/papaparse": "^5.5.2",
+    "@types/pdfkit": "^0.17.6",
+    "axios": "^1.15.0",
+    "clsx": "^2.1.1",
+    "csv-stringify": "^6.7.0",
+    "date-fns": "^4.1.0",
+    "docx": "^9.6.1",
+    "dompurify": "^3.4.0",
+    "file-saver": "^2.0.5",
+    "lucide-react": "^1.8.0",
+    "papaparse": "^5.5.3",
+    "pdfkit": "^0.18.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-hook-form": "^7.72.1",
+    "react-router-dom": "^7.14.1",
+    "recharts": "^3.8.1",
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.3.6",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.8"
+  }
+}
