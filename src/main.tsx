@@ -19,7 +19,7 @@ if (container) {
   const root = createRoot(container);
   root.render(
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename="/Regai">
         <App />
       </BrowserRouter>
     </QueryClientProvider>
