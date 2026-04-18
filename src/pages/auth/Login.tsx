@@ -22,6 +22,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 const Login: React.FC = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
@@ -44,7 +45,7 @@ const Login: React.FC = () => {
   const onSubmit = async (data: LoginFormValues) => {
     // MVP Demo Access Bypass
     if (data.email === 'demo@regshield.ai' && data.password === 'demo123') {
-      window.location.href = '/dashboard';
+      navigate('/dashboard');
       return;
     }
 
