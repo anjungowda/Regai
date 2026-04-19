@@ -4,10 +4,10 @@
   "main": "dist/app.js",
   "scripts": {
     "start": "node dist/app.js",
-    "dev": "nodemon src/app.ts",
+    "dev": "nodemon --exec 'ts-node --transpile-only' src/app.ts",
     "build": "tsc",
-    "prisma:generate": "prisma generate",
-    "prisma:push": "prisma db push"
+    "prisma:generate": "prisma generate --schema=src/prisma/schema.prisma",
+    "prisma:push": "prisma db push --schema=src/prisma/schema.prisma"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.0.0",

@@ -177,9 +177,9 @@ export const CasesTable: React.FC = () => {
             </div>
           ) : (
             filteredCases.map((c: any) => (
-              <div key={c.id} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm relative cursor-pointer hover:border-blue-200 transition-colors" onClick={() => navigate(`/cases/${c.id}`)}>
+              <div key={c.id} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm relative cursor-pointer hover:border-blue-200 transition-colors" onClick={() => navigate(`/cases/${c.caseRef}`)}>
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-[#1B4FD8] font-mono font-bold text-sm">{c.id.substring(0,12)}</span>
+                  <span className="text-[#1B4FD8] font-mono font-bold text-sm">{c.caseRef}</span>
                   <div className="flex gap-1.5">
                     {riskBadge(c.riskLevel)}
                     {statusBadge(c.status)}
@@ -261,7 +261,7 @@ export const CasesTable: React.FC = () => {
                 return (
                   <tr key={c.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
                     <td className="px-5 py-4 text-sm font-mono text-[#1B4FD8] font-semibold">
-                      <Link to={`/cases/${c.id}`} className="hover:underline">{c.id.substring(0,12)}...</Link>
+                      <Link to={`/cases/${c.caseRef}`} className="hover:underline">{c.caseRef}</Link>
                     </td>
                     <td className="px-5 py-4">{caseTypeBadge(c.caseType)}</td>
                     <td className="px-5 py-4 text-sm text-slate-700 font-medium">
@@ -280,15 +280,17 @@ export const CasesTable: React.FC = () => {
                     {isManager && (
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-xs font-bold shrink-0">
-                            A
+                          <div className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-xs font-bold shrink-0 uppercase">
+                            {(c.assignedTo && typeof c.assignedTo === 'object' ? c.assignedTo.fullName : (c.assignedTo || 'U'))[0]}
                           </div>
-                          <span className="text-sm text-slate-600">Analyst</span>
+                          <span className="text-sm text-slate-600">
+                            {c.assignedTo && typeof c.assignedTo === 'object' ? c.assignedTo.fullName : (c.assignedTo || 'Unassigned')}
+                          </span>
                         </div>
                       </td>
                     )}
                     <td className="px-5 py-4 text-right">
-                      <Link to={`/cases/${c.id}`} className="text-[#1B4FD8] text-sm font-medium hover:underline">
+                      <Link to={`/cases/${c.caseRef}`} className="text-[#1B4FD8] text-sm font-medium hover:underline">
                         Open
                       </Link>
                     </td>

@@ -105,11 +105,13 @@ export const OverviewTab = ({ caseData, updateCase }: any) => {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F2557] text-white flex items-center justify-center font-bold text-sm">
-                  {caseData.assignedTo ? caseData.assignedTo[0].toUpperCase() : 'UA'}
+                <div className="w-10 h-10 rounded-full bg-[#0F2557] text-white flex items-center justify-center font-bold text-sm uppercase">
+                  {(caseData.assignedTo && typeof caseData.assignedTo === 'object' ? caseData.assignedTo.fullName : (caseData.assignedTo || 'U'))[0]}
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-slate-800">{caseData.assignedTo || 'Unassigned'}</p>
+                  <p className="text-sm font-bold text-slate-800">
+                    {caseData.assignedTo && typeof caseData.assignedTo === 'object' ? caseData.assignedTo.fullName : (caseData.assignedTo || 'Unassigned')}
+                  </p>
                   <p className="text-xs text-slate-500">Assigned Analyst</p>
                 </div>
               </div>

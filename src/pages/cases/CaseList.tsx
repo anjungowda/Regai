@@ -282,7 +282,7 @@ export default function CaseList() {
                       />
                     </td>
                     <td className="px-4 py-4 text-sm font-mono font-bold text-[#1B4FD8]">
-                      <Link to={`/cases/${c.id}`} className="hover:underline">{c.id.substring(0, 10)}</Link>
+                      <Link to={`/cases/${c.caseRef}`} className="hover:underline">{c.caseRef}</Link>
                     </td>
                     <td className="px-4 py-4 text-sm text-slate-600">{c.caseType.replace(/_/g, ' ')}</td>
                     <td className="px-4 py-4 text-sm font-medium text-slate-800 truncate max-w-[200px]">
@@ -312,7 +312,9 @@ export default function CaseList() {
                         {isOverdue && <span className="bg-red-100 text-red-700 text-[10px] uppercase font-bold px-1 rounded">Overdue</span>}
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-slate-600">User Assigned</td>
+                    <td className="px-4 py-4 text-sm text-slate-600">
+                      {c.assignedTo && typeof c.assignedTo === 'object' ? c.assignedTo.fullName : (c.assignedTo || 'Unassigned')}
+                    </td>
                     <td className="px-4 py-4 text-sm text-slate-500">{format(new Date(c.createdAt), 'dd MMM yyyy')}</td>
                     <td className="px-4 py-4 text-right">
                       <div className="relative inline-block text-left group/menu">
@@ -320,10 +322,10 @@ export default function CaseList() {
                           <EllipsisVertical className="w-5 h-5" />
                         </button>
                         <div className="absolute right-0 mt-1 w-48 bg-white border border-slate-200 rounded-xl shadow-lg z-10 hidden group-hover/menu:block py-1">
-                          <Link to={`/cases/${c.id}`} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"><ExternalLink className="w-4 h-4"/> View case</Link>
+                          <Link to={`/cases/${c.caseRef}`} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"><ExternalLink className="w-4 h-4"/> View case</Link>
                           <button onClick={() => { setActiveCaseId(c.id); setReassignModalOpen(true); }} className="w-full flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"><UserCheck className="w-4 h-4"/> Edit assignment</button>
                           <button onClick={() => { setActiveCaseId(c.id); setStatusModalOpen(true); }} className="w-full flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"><RefreshCw className="w-4 h-4"/> Change status</button>
-                          <Link to={`/cases/${c.id}?tab=audit-trail`} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"><ScrollText className="w-4 h-4"/> View audit trail</Link>
+                          <Link to={`/cases/${c.caseRef}?tab=audit-trail`} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"><ScrollText className="w-4 h-4"/> View audit trail</Link>
                           <div className="border-t border-slate-100 my-1"></div>
                           <button className="w-full flex items-center gap-2 px-4 py-2 text-sm text-[#1B4FD8] hover:bg-slate-50"><Download className="w-4 h-4"/> Export case PDF</button>
                         </div>

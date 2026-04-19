@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { User, Organisation } from '../types';
+import { MOCK_USER, MOCK_ORGANISATION } from '../lib/mockData';
 
 interface AuthState {
   user: User | null;
@@ -22,3 +23,14 @@ export const useAuthStore = create<AuthState>((set) => ({
   setLoading: (isLoading) => set({ isLoading }),
   logout: () => set({ user: null, organisation: null, isAuthenticated: false }),
 }));
+
+export const initDemoMode = () => {
+  if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+    useAuthStore.setState({
+      user: MOCK_USER,
+      organisation: MOCK_ORGANISATION,
+      isAuthenticated: true,
+      isLoading: false,
+    });
+  }
+};

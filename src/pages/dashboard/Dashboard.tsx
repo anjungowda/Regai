@@ -38,6 +38,8 @@ export default function Dashboard() {
     return 'Good evening';
   };
 
+  const firstName = user?.fullName?.split(' ')[0] ?? 'there';
+
   return (
     <div className="max-w-screen-xl mx-auto space-y-6 animate-in fade-in duration-300">
       
@@ -45,7 +47,7 @@ export default function Dashboard() {
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-[#0F2557]">
-            {getGreeting()}, {user?.firstName || 'User'}
+            {getGreeting()}, {firstName}
           </h1>
           <p className="text-slate-500 text-sm mt-0.5">
             {format(new Date(), 'EEEE, d MMMM yyyy')}

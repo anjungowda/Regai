@@ -109,8 +109,8 @@ export default function CaseDetail() {
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
           <div>
             <Link to="/cases" className="text-[#1B4FD8] text-sm mb-2 inline-block hover:underline">← Cases</Link>
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold font-mono text-[#0F2557]">{caseData.id.substring(0,10)}</h1>
+            <div className="flex flex-wrap items-start gap-3">
+              <h1 className="text-2xl font-bold font-mono text-[#0F2557] whitespace-nowrap">{caseData.caseRef}</h1>
               <span className="bg-blue-50 text-[#1B4FD8] border border-blue-200 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">{caseData.caseType.replace(/_/g, ' ')}</span>
             </div>
             <p className="text-slate-500 text-sm mt-1">Opened {format(new Date(caseData.createdAt), 'dd MMM yyyy')} by External API</p>
@@ -137,7 +137,9 @@ export default function CaseDetail() {
         <div className="flex flex-wrap gap-x-6 gap-y-2 mt-3 text-sm text-slate-600">
           <div className="flex items-center gap-1.5">
             <UserCheck className="w-4 h-4 text-slate-400" />
-            <span>Assigned to: <span className="font-semibold text-slate-800">{caseData.assignedTo || 'Unassigned'}</span></span>
+            <span>Assigned to: <span className="font-semibold text-slate-800">
+              {caseData.assignedTo && typeof caseData.assignedTo === 'object' ? caseData.assignedTo.fullName : (caseData.assignedTo || 'Unassigned')}
+            </span></span>
           </div>
           <div className="flex items-center gap-1.5">
             <Clock className={`w-4 h-4 ${isOverdue ? 'text-red-600' : 'text-slate-400'}`} />
@@ -145,7 +147,9 @@ export default function CaseDetail() {
           </div>
           <div className="flex items-center gap-1.5">
             <Eye className="w-4 h-4 text-slate-400" />
-            <span>Reviewer: Not assigned</span>
+            <span>Reviewer: <span className="font-semibold text-slate-800">
+              {caseData.reviewer && typeof caseData.reviewer === 'object' ? caseData.reviewer.fullName : (caseData.reviewer || 'Not assigned')}
+            </span></span>
           </div>
           {isOverdue && (
             <div className="flex items-center gap-1.5 text-red-600 font-medium">
@@ -193,10 +197,10 @@ export default function CaseDetail() {
           {[
             { id: 'overview', label: 'Overview' },
             { id: 'customer', label: 'Customer / Company' },
-            { id: 'alerts', label: 'Alerts & Flags', count: 0 },
-            { id: 'evidence', label: 'Evidence', count: 0 },
-            { id: 'notes', label: 'Notes', count: 0 },
-            { id: 'tasks', label: 'Tasks', count: 0 },
+            { id: 'alerts', label: 'Alerts', count: caseData._count?.alerts },
+            { id: 'evidence', label: 'Evidence', count: caseData._count?.evidence },
+            { id: 'notes', label: 'Notes', count: caseData._count?.notes },
+            { id: 'tasks', label: 'Tasks', count: caseData._count?.tasks },
             { id: 'decision', label: 'Decision' },
             { id: 'audit-trail', label: 'Audit Trail' }
           ].map(tab => (

@@ -23,7 +23,7 @@ export const GlobalSearch = () => {
            value={query}
            onChange={(e) => { setQuery(e.target.value); setIsOpen(true); }}
            onBlur={() => setTimeout(() => setIsOpen(false), 200)}
-           placeholder="Search network namespace..." 
+           placeholder="Search cases, customers, alerts..." 
            className="w-full sm:w-64 md:w-80 pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:ring-1 focus:ring-[#1B4FD8] focus:bg-white transition-all shadow-sm"
          />
        </form>

@@ -29,6 +29,8 @@ jobs:
         run: npm ci
       - name: Build project
         run: npm run build
+        env:
+          VITE_BASE_URL: /Regai/
       - name: Setup catch-all 404 for React Router
         run: cp dist/index.html dist/404.html
       - name: Generate Empty ENV

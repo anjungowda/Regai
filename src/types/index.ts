@@ -7,6 +7,8 @@ export interface Organisation {
   countryOfIncorporation: string;
   subscriptionPlan: string;
   fcaReferenceNumber?: string;
+  displayName?: string;
+  regulatoryFramework?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -28,6 +30,7 @@ export interface User {
 export interface Case {
   id: string;
   organisationId: string;
+  caseRef: string;
   customerId?: string;
   companyId?: string;
   caseType: 'ONBOARDING' | 'KYB_REVIEW' | 'TRANSACTION_MONITORING' | 'ENHANCED_DUE_DILIGENCE' | 'PERIODIC_REVIEW' | 'SUSPICIOUS_ACTIVITY_REPORT' | 'FRAUD_INVESTIGATION';

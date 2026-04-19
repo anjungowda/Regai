@@ -5,6 +5,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './components/layout/PublicLayout';
 import { AppLayout } from './components/layout/AppLayout';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { initDemoMode } from './store/authStore';
+
+initDemoMode();
 
 // Public Pages
 import Home from './pages/public/Home';

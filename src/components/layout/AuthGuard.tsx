@@ -16,6 +16,10 @@ const AuthGuard: React.FC<AuthGuardProps> = ({
   requireOnboarding = true,
   acceptedRoles
 }) => {
+  if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+    return <>{children}</>;
+  }
+
   const location = useLocation();
   const { showToast } = useToast();
   const { user, isAuthenticated, isLoading, setLoading, setUser, setOrganisation, logout } = useAuthStore();
